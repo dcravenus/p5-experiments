@@ -3,6 +3,7 @@ const canvasWidth = window.innerWidth;
 const minSquareSize = 10;
 const grid = [];
 let count = 0;
+const borderWidth = 5;
 
 const getRandomInt = (min, max) => {
   min = Math.ceil(min);
@@ -25,11 +26,9 @@ const setRandomFill = () => {
   }
 };
 
-const drawRectangle = () => {
-  const primaryColorHValues = [0, 120, 240];
-  const currentColor = primaryColorHValues[getRandomInt(0, 3)];
-  fill(currentColor, 100, 100);
-  rect(getRandomInt(0, canvasWidth), getRandomInt(0, canvasWidth), 100, 100);
+const drawBorder = () => {
+  noFill();
+  rect(0, 0, canvasWidth, canvasHeight);
 };
 
 function draw() {
@@ -39,9 +38,7 @@ function draw() {
   const primaryColorHValues = [0, 60, 240];
 
   colorMode(HSB);
-  strokeWeight(4);
-
-  // drawRectangle();
+  strokeWeight(borderWidth);
 
   const rows = canvasWidth / 10;
   const cols = canvasHeight / 10;
@@ -103,6 +100,9 @@ function draw() {
       }
     }
   }
+  strokeWeight(borderWidth * 2);
+
+  drawBorder();
 }
 
 function mouseClicked(event) {
